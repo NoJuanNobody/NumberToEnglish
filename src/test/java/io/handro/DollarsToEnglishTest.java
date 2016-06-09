@@ -62,7 +62,7 @@ public class DollarsToEnglishTest {
     @Test
     public void DecimalTest(){
         String expected = "Thousand";
-        String actual = DollarsToEnglish.decimal(4);
+        String actual = DollarsToEnglish.decimal(1,4);
         assertEquals(expected,actual);
     }
 
@@ -86,6 +86,27 @@ public class DollarsToEnglishTest {
         String expected = "FortySevenThousandTwoHundredNine";
         ArrayList<Integer> number = new ArrayList<>(Arrays.asList(9,0,2,7,4));
         String actual = DollarsToEnglish.toEnglish(number);
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void appendDollars(){
+        String expected="Dollars";
+        String actual = DollarsToEnglish.appendDollars("");
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void engineTest(){
+        String expected="TwoThousandThreeHundredFortyFiveDollars";
+        String actual = DollarsToEnglish.engine(number);
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void engineTwoTest(){
+        String expected="OneMillionDollars";
+        String actual = DollarsToEnglish.engine("55352");
         assertEquals(expected,actual);
     }
 }

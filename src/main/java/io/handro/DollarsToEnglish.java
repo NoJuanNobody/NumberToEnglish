@@ -1,7 +1,11 @@
 package io.handro;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * Created by alejandrolondono on 6/9/16.
@@ -18,7 +22,7 @@ public class DollarsToEnglish {
         }
     }
     public enum Tens{
-        ZERO(""), TEN("Ten"), TWENTY("Twenty"), THIRTY("THIRTY"), FORTY("Forty"), FIFTY("Fifty"), SIXTY("Sixty"), SEVENTY("Seventy"), EIGHTY("Eighty"), NINETY("Ninety");
+        ZERO(""), TEN("Ten"), TWENTY("Twenty"), THIRTY("Thirty"), FORTY("Forty"), FIFTY("Fifty"), SIXTY("Sixty"), SEVENTY("Seventy"), EIGHTY("Eighty"), NINETY("Ninety");
         protected String value;
         Tens(String value){
             this.value = value;
@@ -28,7 +32,7 @@ public class DollarsToEnglish {
         }
     }
     public enum Decimal{
-        ZERO(""), ONE("One"), TEN("Ten"), HUNDRED("Hundred"), THOUSAND("Thousand"), MILLION("Million"), BILLION("Billion");
+        ZERO(""), HUNDRED("Hundred"), THOUSAND("Thousand"), MILLION("Million"), BILLION("Billion");
         String value;
         Decimal(String value){
             this.value = value;
@@ -69,14 +73,16 @@ public class DollarsToEnglish {
     }
 
     public static String tens(int digit){
+        if(digit == 0) return "";
         return Tens.values()[digit].getValue();
     }
-    public static String decimal(int position){
-        return Decimal.values()[position].getValue();
+    public static String decimal(int digit, int position){
+        if( digit == 0) return "";
+        return Decimal.values()[position/3].getValue();
     }
     public static String hundreds(int digit){
         if(digit == 0) return "";
-        return ones(digit)+decimal(3);
+        return ones(digit)+decimal(digit, 3);
     }
     public static ArrayList<Integer> correctFormat(ArrayList<Integer> intArray){
         while(intArray.size()%3 != 0){
@@ -88,14 +94,34 @@ public class DollarsToEnglish {
     public static String toEnglish(ArrayList<Integer> digits){
         StringBuilder english = new StringBuilder();
         ArrayList<Integer> correctedDigits = correctFormat(digits);
-        System.out.println(correctedDigits);
-//        1,0,0, 0,0,0
+
         for(int i=correctedDigits.size()-1; i>=0;i--){
             if((i)%3 == 2) english.append(hundreds(correctedDigits.get(i)));
             if((i)%3 == 1) english.append(tens(correctedDigits.get(i)));
-            if((i)%3 == 0) english.append(ones(correctedDigits.get(i))).append(decimal(i+1));
+            if((i)%3 == 0) english.append(ones(correctedDigits.get(i))).append(decimal(correctedDigits.get(i), (i+1)/2));
         }
         return english.toString();
+    }
+
+    public static String appendDollars(String text){
+        return text+"Dollars";
+    }
+
+    public static String engine(String input){
+        if(!isNumber(input)){
+            System.err.println("Invalid Format");
+            return "try again";
+        }
+        ArrayList<Integer> digits = correctFormat(parseStringArray(reverseSplitInput(input)));
+        return appendDollars(toEnglish(digits));
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String s;
+        while ((s = in.readLine()) != null) {
+            System.out.println(DollarsToEnglish.engine(s));
+        }
     }
 
 }
