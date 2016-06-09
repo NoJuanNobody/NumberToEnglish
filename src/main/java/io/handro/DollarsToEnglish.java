@@ -1,13 +1,101 @@
 package io.handro;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by alejandrolondono on 6/9/16.
  */
 public class DollarsToEnglish {
-    public enum Ones{}
-    public enum Tens{}
-    public enum Decimal{}
+    public enum Ones{
+        ZERO(""), ONE("One"), TWO("Two"), THREE("Three"), FOUR("Four"), FIVE("Five"), SIX("Six"), SEVEN("Seven"), EIGHT("Eight"), NINE("Nine");
+        String value;
+        Ones(String value){
+            this.value = value;
+        }
+        public String getValue(){
+            return this.value;
+        }
+    }
+    public enum Tens{
+        ZERO(""), TEN("Ten"), TWENTY("Twenty"), THIRTY("THIRTY"), FORTY("Forty"), FIFTY("Fifty"), SIXTY("Sixty"), SEVENTY("Seventy"), EIGHTY("Eighty"), NINETY("Ninety");
+        protected String value;
+        Tens(String value){
+            this.value = value;
+        }
+        public String getValue(){
+            return this.value;
+        }
+    }
+    public enum Decimal{
+        ZERO(""), ONE("One"), TEN("Ten"), HUNDRED("Hundred"), THOUSAND("Thousand"), MILLION("Million"), BILLION("Billion");
+        String value;
+        Decimal(String value){
+            this.value = value;
+        }
+        public String getValue(){
+            return this.value;
+        }
+    }
+    public enum Teens{
+        TEN("Ten"),ELEVEN("Eleven"),TWELVE("Twelve"),THIRTEEN("Thirteen"),FOURTEEN("Fourteen"),FIFTEEN("Fifteen"),SIXTEEN("Sixteen"),SEVENTEEN("Seventeen"),EIGHTEEN("Eighteen"),NINETEEN("Nineteen");
+        String value;
+        Teens(String value){
+            this.value = value;
+        }
+        public String getValue(){
+            return this.value;
+        }
+    }
 
+    public static boolean isNumber(String input){
+        return input.matches("(\\d)+");
+    }
 
+    public static String[] reverseSplitInput(String input){
+        return new StringBuffer(input).reverse().toString().split("");
+    }
+
+    public static ArrayList<Integer> parseStringArray(String[] strArray){
+        ArrayList<Integer> intArray= new ArrayList<>();
+        for(String digit : strArray){
+            intArray.add(Integer.parseInt(digit));
+        }
+        return intArray;
+    }
+
+    public static String ones(int digit){
+        return Ones.values()[digit].getValue();
+    }
+
+    public static String tens(int digit){
+        return Tens.values()[digit].getValue();
+    }
+    public static String decimal(int position){
+        return Decimal.values()[position].getValue();
+    }
+    public static String hundreds(int digit){
+        if(digit == 0) return "";
+        return ones(digit)+decimal(3);
+    }
+    public static ArrayList<Integer> correctFormat(ArrayList<Integer> intArray){
+        while(intArray.size()%3 != 0){
+            intArray.add(0);
+        }
+        return intArray;
+    }
+
+    public static String toEnglish(ArrayList<Integer> digits){
+        StringBuilder english = new StringBuilder();
+        ArrayList<Integer> correctedDigits = correctFormat(digits);
+        System.out.println(correctedDigits);
+//        1,0,0, 0,0,0
+        for(int i=correctedDigits.size()-1; i>=0;i--){
+            if((i)%3 == 2) english.append(hundreds(correctedDigits.get(i)));
+            if((i)%3 == 1) english.append(tens(correctedDigits.get(i)));
+            if((i)%3 == 0) english.append(ones(correctedDigits.get(i))).append(decimal(i+1));
+        }
+        return english.toString();
+    }
 
 }
