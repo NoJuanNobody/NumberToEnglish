@@ -6,14 +6,18 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-
+import io.handro.Rules.*;
 /**
  * Created by alejandrolondono on 6/9/16.
  */
 public class DollarsToEnglish {
 
+    ArrayList<Rules> Rules;
 
-
+    public DollarsToEnglish(){
+        Rules= new ArrayList<>();
+        Rules.add(new OnesRules());
+    }
 
     public static boolean isNumber(String input){
         return input.matches("(\\d)+");
@@ -63,28 +67,44 @@ public class DollarsToEnglish {
         ArrayList<Integer> correctedDigits = correctFormat(digits);
 
         for(int i=correctedDigits.size()-1; i>=0;i--){
-            if((i)%3 == 2) english.append(hundreds(correctedDigits.get(i)));
+            if((i)%3 == 2)
+//                hundred
             if((i)%3 == 1){
-                if(correctedDigits.get(i) == 1){
-                    i--;
-                    english.append(teens(correctedDigits.get(i)));
-                    if(english.toString() !="") {
-                        english.append(decimal(correctedDigits.get(i), i+1));
-                    }
-                    continue;
-                }else {
-                    english.append(tens(correctedDigits.get(i)));
-                }
+//                tens
             }
             if((i)%3 == 0){
-                english.append(ones(correctedDigits.get(i)));
-                if((correctedDigits.get(i+1) != 0) || (correctedDigits.get(i+2)!=0) || (correctedDigits.get(i)!=0)) {
-                    english.append(decimal(correctedDigits.get(i), i+1));
-                }
+//              ones
             }
         }
         return english.toString();
     }
+//   public static String toEnglish(ArrayList<Integer> digits){
+//        StringBuilder english = new StringBuilder();
+//        ArrayList<Integer> correctedDigits = correctFormat(digits);
+//
+//        for(int i=correctedDigits.size()-1; i>=0;i--){
+//            if((i)%3 == 2) english.append(hundreds(correctedDigits.get(i)));
+//            if((i)%3 == 1){
+//                if(correctedDigits.get(i) == 1){
+//                    i--;
+//                    english.append(teens(correctedDigits.get(i)));
+//                    if(english.toString() !="") {
+//                        english.append(decimal(correctedDigits.get(i), i+1));
+//                    }
+//                    continue;
+//                }else {
+//                    english.append(tens(correctedDigits.get(i)));
+//                }
+//            }
+//            if((i)%3 == 0){
+//                english.append(ones(correctedDigits.get(i)));
+//                if((correctedDigits.get(i+1) != 0) || (correctedDigits.get(i+2)!=0) || (correctedDigits.get(i)!=0)) {
+//                    english.append(decimal(correctedDigits.get(i), i+1));
+//                }
+//            }
+//        }
+//        return english.toString();
+//    }
 
     public static String appendDollars(String text){
         return text+"Dollars";
