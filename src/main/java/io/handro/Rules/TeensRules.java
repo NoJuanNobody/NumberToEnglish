@@ -6,20 +6,19 @@ import java.util.ArrayList;
 /**
  * Created by alejandrolondono on 6/10/16.
  */
-public class TeensRules implements Rules {
+public class TeensRules{
 
     public static String teens(int digit){
         return Teens.values()[digit].getValue();
     }
 
-    @Override
-    public boolean condition(int input) {
-        return false;
+
+    public boolean condition(ArrayList<Integer> digits, int iterator) {
+        return digits.get(iterator) == 1;
     }
 
-    @Override
-    public StringBuilder action(StringBuilder english, ArrayList<Integer> correctedDigits, int iterator) {
-    english.append(teens(correctedDigits.get(iterator)));
-        return english;
+    public int action(StringBuilder english, ArrayList<Integer> correctedDigits, int iterator) {
+        english.append(teens(correctedDigits.get(iterator)));
+        return iterator;
     }
 }

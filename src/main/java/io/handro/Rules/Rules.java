@@ -7,5 +7,5 @@ import java.util.ArrayList;
  */
 public interface Rules {
     boolean condition(int input);
-    StringBuilder action(StringBuilder english, ArrayList<Integer> correctedDigits, int iterator);
+    int action(StringBuilder english, ArrayList<Integer> correctedDigits, int iterator);
 }

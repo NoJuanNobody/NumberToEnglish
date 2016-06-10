@@ -51,39 +51,14 @@ public class DollarsToEnglish {
         for(int i=correctedDigits.size()-1; i>=0;i--){
             for(Rules rule: rules){
                 if(rule.condition(i)){
-                    rule.action(english,correctedDigits,i);
+                    int prevI = i;
+                    i = rule.action(english,correctedDigits,i);
+                    if(i !=prevI) break;
                 }
             }
         }
         return english.toString();
     }
-//   public static String toEnglish(ArrayList<Integer> digits){
-//        StringBuilder english = new StringBuilder();
-//        ArrayList<Integer> correctedDigits = correctFormat(digits);
-//
-//        for(int i=correctedDigits.size()-1; i>=0;i--){
-//            if((i)%3 == 2) english.append(hundreds(correctedDigits.get(i)));
-//            if((i)%3 == 1){
-//                if(correctedDigits.get(i) == 1){
-//                    i--;
-//                    english.append(teens(correctedDigits.get(i)));
-//                    if(english.toString() !="") {
-//                        english.append(decimal(correctedDigits.get(i), i+1));
-//                    }
-//                    continue;
-//                }else {
-//                    english.append(tens(correctedDigits.get(i)));
-//                }
-//            }
-//            if((i)%3 == 0){
-//                english.append(ones(correctedDigits.get(i)));
-//                if((correctedDigits.get(i+1) != 0) || (correctedDigits.get(i+2)!=0) || (correctedDigits.get(i)!=0)) {
-//                    english.append(decimal(correctedDigits.get(i), i+1));
-//                }
-//            }
-//        }
-//        return english.toString();
-//    }
 
     public static String appendDollars(String text){
         return text+"Dollars";

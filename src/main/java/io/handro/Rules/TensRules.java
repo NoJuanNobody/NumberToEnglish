@@ -8,6 +8,9 @@ import java.util.ArrayList;
  */
 public class TensRules implements Rules {
 
+    TeensRules teensRules = new TeensRules();
+    DecimalRules decimalRules = new DecimalRules();
+
     public static String tens(int digit){
         if(digit == 0) return "";
         return Tens.values()[digit].getValue();
@@ -19,17 +22,17 @@ public class TensRules implements Rules {
     }
 
     @Override
-    public StringBuilder action(StringBuilder english, ArrayList<Integer> correctedDigits, int iterator){
-        if(correctedDigits.get(iterator) == 1){
+    public int action(StringBuilder english, ArrayList<Integer> correctedDigits, int iterator){
+        if(teensRules.condition(correctedDigits,iterator)){
             iterator--;
-//            INSERT TEENS
-            if(english.toString() !="") {
-//                INSERT DECIMAL
+            teensRules.action(english,correctedDigits,iterator);
+            if(decimalRules.condition(iterator, correctedDigits)) {
+                decimalRules.action(english, correctedDigits, iterator);
             }
-//            continue;
+//            iterator--;
         }else {
             english.append(tens(correctedDigits.get(iterator)));
         }
-        return english;
+        return iterator;
     }
 }

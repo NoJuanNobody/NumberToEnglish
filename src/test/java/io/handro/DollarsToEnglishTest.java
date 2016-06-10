@@ -14,11 +14,13 @@ import static org.junit.Assert.*;
 public class DollarsToEnglishTest {
 
     String number, notANumber;
+    DollarsToEnglish dollarsToEnglish;
 
     @Before
     public void setup(){
         number= "2345";
         notANumber="hello";
+        dollarsToEnglish = new DollarsToEnglish();
     }
 
     @Test

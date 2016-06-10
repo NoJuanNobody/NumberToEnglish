@@ -32,8 +32,8 @@ public class TensRulesSpec {
     @Test
     public void actionTest() throws Exception {
         String expected = "Fifty";
-        StringBuilder actual = TensRules.action(english, digits, 0);
-        assertEquals(expected,actual.toString());
+        TensRules.action(english, digits, 0);
+        assertEquals(expected,english.toString());
     }
 
 }

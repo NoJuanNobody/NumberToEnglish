@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public class OnesRules implements Rules {
 
+    DecimalRules decimalrules = new DecimalRules();
+
     public static String ones(int digit){
         return Ones.values()[digit].getValue();
     }
@@ -18,11 +20,11 @@ public class OnesRules implements Rules {
     }
 
     @Override
-    public StringBuilder action(StringBuilder english, ArrayList<Integer> correctedDigits, int iterator) {
+    public int action(StringBuilder english, ArrayList<Integer> correctedDigits, int iterator) {
         english.append(ones(correctedDigits.get(iterator)));
-//        if((correctedDigits.get(iterator+1) != 0) || (correctedDigits.get(iterator+2)!=0) || (correctedDigits.get(iterator)!=0)) {
-//            INSERT DECIMAL
-//        }
-        return english;
+        if(decimalrules.condition(iterator, correctedDigits)) {
+            decimalrules.action(english, correctedDigits, iterator);
+        }
+        return iterator;
     }
 }

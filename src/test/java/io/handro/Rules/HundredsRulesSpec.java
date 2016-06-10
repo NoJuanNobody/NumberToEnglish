@@ -31,7 +31,7 @@ public class HundredsRulesSpec {
     @Test
     public void actionTest() throws Exception {
         String expected = "FiveHundred";
-        StringBuilder actual = HundredsRules.action(english, digits, 0);
-        assertEquals(expected,actual.toString());
+        HundredsRules.action(english, digits, 0);
+        assertEquals(expected,english.toString());
     }
 }

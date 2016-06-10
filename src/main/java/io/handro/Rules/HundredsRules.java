@@ -20,8 +20,8 @@ public class HundredsRules implements Rules {
     }
 
     @Override
-    public StringBuilder action(StringBuilder english, ArrayList<Integer> correctedDigits, int iterator) {
+    public int action(StringBuilder english, ArrayList<Integer> correctedDigits, int iterator) {
         english.append(hundreds(correctedDigits.get(iterator)));
-        return english;
+        return iterator;
     }
 }

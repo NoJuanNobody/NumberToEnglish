@@ -11,27 +11,30 @@ import static org.junit.Assert.*;
 /**
  * Created by alejandrolondono on 6/10/16.
  */
-public class OnesRulesTest {
-    OnesRules onesRules;
+public class DecimalRulesSpec {
+
+
+    DecimalRules decimalRules;
     StringBuilder english;
     ArrayList<Integer> digits;
+
     @Before
     public void setUp() throws Exception {
-        onesRules = new OnesRules();
+        decimalRules = new DecimalRules();
         english = new StringBuilder();
-        digits = new ArrayList<>(Arrays.asList(5,0,0));
+        digits = new ArrayList<>(Arrays.asList(0,0,5,0,0));
     }
 
     @Test
     public void conditionTest() throws Exception {
-        assertTrue(onesRules.condition(6));
+        assertTrue(decimalRules.condition(2,digits));
     }
 
     @Test
     public void actionTest() throws Exception {
-        String expected = "Five";
-        onesRules.action(english, digits, 0);
-        assertEquals(expected,english.toString());
+        String expected="Hundred";
+        StringBuilder actual = decimalRules.action(english, digits, 2);
+        assertEquals(expected,actual.toString());
     }
 
 }
