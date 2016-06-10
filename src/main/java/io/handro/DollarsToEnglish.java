@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 import io.handro.Rules.*;
 /**
  * Created by alejandrolondono on 6/9/16.
@@ -80,5 +78,4 @@ public class DollarsToEnglish {
             System.out.println(DollarsToEnglish.engine(s));
         }
     }
-
 }
