@@ -12,11 +12,13 @@ import io.handro.Rules.*;
  */
 public class DollarsToEnglish {
 
-    ArrayList<Rules> Rules;
+    public static ArrayList<Rules> rules;
 
     public DollarsToEnglish(){
-        Rules= new ArrayList<>();
-        Rules.add(new OnesRules());
+        rules= new ArrayList<>();
+        rules.add(new HundredsRules());
+        rules.add(new TensRules());
+        rules.add(new OnesRules());
     }
 
     public static boolean isNumber(String input){
@@ -35,26 +37,6 @@ public class DollarsToEnglish {
         return intArray;
     }
 
-    public static String ones(int digit){
-        return Ones.values()[digit].getValue();
-    }
-
-    public static String teens(int digit){
-        return Teens.values()[digit].getValue();
-    }
-
-    public static String tens(int digit){
-        if(digit == 0) return "";
-        return Tens.values()[digit].getValue();
-    }
-    public static String decimal(int digit, int position){
-//        if( digit == 0) return "";
-        return Decimal.values()[(position)/2].getValue();
-    }
-    public static String hundreds(int digit){
-        if(digit == 0) return "";
-        return ones(digit)+decimal(digit, 2);
-    }
     public static ArrayList<Integer> correctFormat(ArrayList<Integer> intArray){
         while(intArray.size()%3 != 0){
             intArray.add(0);
@@ -67,13 +49,10 @@ public class DollarsToEnglish {
         ArrayList<Integer> correctedDigits = correctFormat(digits);
 
         for(int i=correctedDigits.size()-1; i>=0;i--){
-            if((i)%3 == 2)
-//                hundred
-            if((i)%3 == 1){
-//                tens
-            }
-            if((i)%3 == 0){
-//              ones
+            for(Rules rule: rules){
+                if(rule.condition(i)){
+                    rule.action(english,correctedDigits,i);
+                }
             }
         }
         return english.toString();

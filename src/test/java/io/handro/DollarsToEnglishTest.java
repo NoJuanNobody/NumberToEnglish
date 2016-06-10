@@ -1,5 +1,6 @@
 package io.handro;
 
+import io.handro.Rules.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -48,28 +49,28 @@ public class DollarsToEnglishTest {
     @Test
     public void onesTest(){
         String expected="Seven";
-        String actual = DollarsToEnglish.ones(7);
+        String actual = OnesRules.ones(7);
         assertEquals(expected,actual);
     }
 
     @Test
     public void tensTest(){
         String expected="Fifty";
-        String actual = DollarsToEnglish.tens(5);
+        String actual = TensRules.tens(5);
         assertEquals(expected,actual);
     }
 
     @Test
     public void DecimalTest(){
         String expected = "Thousand";
-        String actual = DollarsToEnglish.decimal(1,4);
+        String actual = DecimalRules.decimal(1,4);
         assertEquals(expected,actual);
     }
 
     @Test
     public void HundredsTest(){
         String expected = "FourHundred";
-        String actual = DollarsToEnglish.hundreds(4);
+        String actual = HundredsRules.hundreds(4);
         assertEquals(expected,actual);
     }
 

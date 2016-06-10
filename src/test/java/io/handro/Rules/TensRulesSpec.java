@@ -6,31 +6,33 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by alejandrolondono on 6/10/16.
  */
-public class OnesRulesTest {
-    OnesRules onesRules;
+public class TensRulesSpec {
+
+    TensRules TensRules;
     StringBuilder english;
     ArrayList<Integer> digits;
     @Before
     public void setUp() throws Exception {
-        onesRules = new OnesRules();
+        TensRules = new TensRules();
         english = new StringBuilder();
         digits = new ArrayList<>(Arrays.asList(5));
     }
 
     @Test
     public void conditionTest() throws Exception {
-        assertTrue(onesRules.condition(6));
+        assertTrue(TensRules.condition(4));
     }
 
     @Test
     public void actionTest() throws Exception {
-        String expected = "Five";
-        StringBuilder actual = onesRules.action(english, digits, 0);
+        String expected = "Fifty";
+        StringBuilder actual = TensRules.action(english, digits, 0);
         assertEquals(expected,actual.toString());
     }
 
