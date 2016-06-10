@@ -11,46 +11,9 @@ import java.util.Scanner;
  * Created by alejandrolondono on 6/9/16.
  */
 public class DollarsToEnglish {
-    public enum Ones{
-        ZERO(""), ONE("One"), TWO("Two"), THREE("Three"), FOUR("Four"), FIVE("Five"), SIX("Six"), SEVEN("Seven"), EIGHT("Eight"), NINE("Nine");
-        String value;
-        Ones(String value){
-            this.value = value;
-        }
-        public String getValue(){
-            return this.value;
-        }
-    }
-    public enum Tens{
-        ZERO(""), TEN("Ten"), TWENTY("Twenty"), THIRTY("Thirty"), FORTY("Forty"), FIFTY("Fifty"), SIXTY("Sixty"), SEVENTY("Seventy"), EIGHTY("Eighty"), NINETY("Ninety");
-        protected String value;
-        Tens(String value){
-            this.value = value;
-        }
-        public String getValue(){
-            return this.value;
-        }
-    }
-    public enum Decimal{
-        ZERO(""), HUNDRED("Hundred"), THOUSAND("Thousand"), MILLION("Million"), PLACEHOLDER(""), BILLION("Billion");
-        String value;
-        Decimal(String value){
-            this.value = value;
-        }
-        public String getValue(){
-            return this.value;
-        }
-    }
-    public enum Teens{
-        TEN("Ten"), ELEVEN("Eleven"),TWELVE("Twelve"),THIRTEEN("Thirteen"),FOURTEEN("Fourteen"),FIFTEEN("Fifteen"),SIXTEEN("Sixteen"),SEVENTEEN("Seventeen"),EIGHTEEN("Eighteen"),NINETEEN("Nineteen");
-        String value;
-        Teens(String value){
-            this.value = value;
-        }
-        public String getValue(){
-            return this.value;
-        }
-    }
+
+
+
 
     public static boolean isNumber(String input){
         return input.matches("(\\d)+");
