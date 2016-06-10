@@ -32,7 +32,7 @@ public class DollarsToEnglish {
         }
     }
     public enum Decimal{
-        ZERO(""), HUNDRED("Hundred"), THOUSAND("Thousand"), MILLION("Million"), BILLION("Billion");
+        ZERO(""), HUNDRED("Hundred"), THOUSAND("Thousand"), MILLION("Million"), PLACEHOLDER(""), BILLION("Billion");
         String value;
         Decimal(String value){
             this.value = value;
@@ -42,7 +42,7 @@ public class DollarsToEnglish {
         }
     }
     public enum Teens{
-        TEN("Ten"),ELEVEN("Eleven"),TWELVE("Twelve"),THIRTEEN("Thirteen"),FOURTEEN("Fourteen"),FIFTEEN("Fifteen"),SIXTEEN("Sixteen"),SEVENTEEN("Seventeen"),EIGHTEEN("Eighteen"),NINETEEN("Nineteen");
+        TEN("Ten"), ELEVEN("Eleven"),TWELVE("Twelve"),THIRTEEN("Thirteen"),FOURTEEN("Fourteen"),FIFTEEN("Fifteen"),SIXTEEN("Sixteen"),SEVENTEEN("Seventeen"),EIGHTEEN("Eighteen"),NINETEEN("Nineteen");
         String value;
         Teens(String value){
             this.value = value;
@@ -72,17 +72,21 @@ public class DollarsToEnglish {
         return Ones.values()[digit].getValue();
     }
 
+    public static String teens(int digit){
+        return Teens.values()[digit].getValue();
+    }
+
     public static String tens(int digit){
         if(digit == 0) return "";
         return Tens.values()[digit].getValue();
     }
     public static String decimal(int digit, int position){
-        if( digit == 0) return "";
-        return Decimal.values()[position/3].getValue();
+//        if( digit == 0) return "";
+        return Decimal.values()[(position)/2].getValue();
     }
     public static String hundreds(int digit){
         if(digit == 0) return "";
-        return ones(digit)+decimal(digit, 3);
+        return ones(digit)+decimal(digit, 2);
     }
     public static ArrayList<Integer> correctFormat(ArrayList<Integer> intArray){
         while(intArray.size()%3 != 0){
@@ -97,8 +101,24 @@ public class DollarsToEnglish {
 
         for(int i=correctedDigits.size()-1; i>=0;i--){
             if((i)%3 == 2) english.append(hundreds(correctedDigits.get(i)));
-            if((i)%3 == 1) english.append(tens(correctedDigits.get(i)));
-            if((i)%3 == 0) english.append(ones(correctedDigits.get(i))).append(decimal(correctedDigits.get(i), (i+1)/2));
+            if((i)%3 == 1){
+                if(correctedDigits.get(i) == 1){
+                    i--;
+                    english.append(teens(correctedDigits.get(i)));
+                    if(english.toString() !="") {
+                        english.append(decimal(correctedDigits.get(i), i+1));
+                    }
+                    continue;
+                }else {
+                    english.append(tens(correctedDigits.get(i)));
+                }
+            }
+            if((i)%3 == 0){
+                english.append(ones(correctedDigits.get(i)));
+                if((correctedDigits.get(i+1) != 0) || (correctedDigits.get(i+2)!=0) || (correctedDigits.get(i)!=0)) {
+                    english.append(decimal(correctedDigits.get(i), i+1));
+                }
+            }
         }
         return english.toString();
     }

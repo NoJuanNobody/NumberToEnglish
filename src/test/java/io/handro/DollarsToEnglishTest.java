@@ -105,8 +105,29 @@ public class DollarsToEnglishTest {
 
     @Test
     public void engineTwoTest(){
+        String expected="NineHundredEighteenMillionThreeHundredFifteenThousandTwoHundredNineteenDollars";
+        String actual = DollarsToEnglish.engine("918315219");
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void engineThreeTest(){
         String expected="OneMillionDollars";
-        String actual = DollarsToEnglish.engine("55352");
+        String actual = DollarsToEnglish.engine("1000000");
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void engineFourTest(){
+        String expected="OneBillionDollars";
+        String actual = DollarsToEnglish.engine("1000000000");
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void engineFiveTest(){
+        String expected="OneThousandDollars";
+        String actual = DollarsToEnglish.engine("1000");
         assertEquals(expected,actual);
     }
 }
