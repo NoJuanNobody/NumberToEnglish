@@ -73,9 +73,10 @@ public class DollarsToEnglish {
 
     public static void main(String[] args) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        DollarsToEnglish dollarsToEnglish = new DollarsToEnglish();
         String s;
         while ((s = in.readLine()) != null) {
-            System.out.println(DollarsToEnglish.engine(s));
+            System.out.println(dollarsToEnglish.engine(s));
         }
     }
 }

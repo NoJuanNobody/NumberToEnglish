@@ -1,10 +1,13 @@
-package io.handro;
+package io.handro.Rosetta;
 
 /**
  * Created by alejandrolondono on 6/10/16.
  */
-public enum Decimal{
-    ZERO(""), HUNDRED("Hundred"), THOUSAND("Thousand"), MILLION("Million"), PLACEHOLDER(""), BILLION("Billion");
+public enum Decimal implements Printable{
+    ZERO(""),
+    THOUSAND("Thousand"),
+    MILLION("Million"),
+    BILLION("Billion");
     String value;
     Decimal(String value){
         this.value = value;

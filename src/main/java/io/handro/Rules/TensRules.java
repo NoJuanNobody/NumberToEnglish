@@ -1,6 +1,6 @@
 package io.handro.Rules;
 
-import io.handro.Tens;
+import io.handro.Rosetta.Tens;
 import java.util.ArrayList;
 
 /**
@@ -24,12 +24,11 @@ public class TensRules implements Rules {
     @Override
     public int action(StringBuilder english, ArrayList<Integer> correctedDigits, int iterator){
         if(teensRules.condition(correctedDigits,iterator)){
-            iterator--;
-            teensRules.action(english,correctedDigits,iterator);
-            if(decimalRules.condition(iterator, correctedDigits)) {
+            teensRules.action(english,correctedDigits,iterator-1);
+            if(decimalRules.condition(iterator-1, correctedDigits)) {
                 decimalRules.action(english, correctedDigits, iterator);
             }
-//            iterator--;
+            iterator--;
         }else {
             english.append(tens(correctedDigits.get(iterator)));
         }

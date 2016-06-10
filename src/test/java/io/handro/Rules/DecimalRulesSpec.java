@@ -32,9 +32,37 @@ public class DecimalRulesSpec {
 
     @Test
     public void actionTest() throws Exception {
-        String expected="Hundred";
+        String expected="Thousand";
         StringBuilder actual = decimalRules.action(english, digits, 2);
         assertEquals(expected,actual.toString());
+    }
+
+    @Test
+    public void ZeroTest(){
+        String expeted="";
+        String actual = decimalRules.decimal(0);
+        assertEquals(expeted,actual);
+    }
+
+    @Test
+    public void ThousandTest(){
+        String expeted="Thousand";
+        String actual = decimalRules.decimal(3);
+        assertEquals(expeted,actual);
+    }
+
+    @Test
+    public void MillionTest(){
+        String expeted="Million";
+        String actual = decimalRules.decimal(6);
+        assertEquals(expeted,actual);
+    }
+
+    @Test
+    public void BillionTest(){
+        String expeted="Billion";
+        String actual = decimalRules.decimal(9);
+        assertEquals(expeted,actual);
     }
 
 }

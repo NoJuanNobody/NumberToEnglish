@@ -1,6 +1,6 @@
 package io.handro.Rules;
 
-import io.handro.Teens;
+import io.handro.Rosetta.Teens;
 
 import java.util.ArrayList;
 /**

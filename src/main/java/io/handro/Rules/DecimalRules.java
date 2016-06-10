@@ -1,6 +1,6 @@
 package io.handro.Rules;
 
-import io.handro.Decimal;
+import io.handro.Rosetta.Decimal;
 
 import java.util.ArrayList;
 
@@ -11,9 +11,8 @@ import java.util.ArrayList;
  */
 public class DecimalRules {
 
-    public static String decimal(int digit, int position){
-        if( digit == 0) return "";
-        return Decimal.values()[(position)/2].getValue();
+    public static String decimal(int position){
+        return Decimal.values()[(position)/3].getValue();
     }
 
     public boolean condition(int iterator, ArrayList<Integer> digits) {
@@ -22,7 +21,7 @@ public class DecimalRules {
 
 
     public StringBuilder action(StringBuilder english, ArrayList<Integer> correctedDigits, int iterator) {
-        english.append(decimal(correctedDigits.get(iterator), iterator+1));
+        english.append(decimal(iterator+1));
         return english;
     }
 }

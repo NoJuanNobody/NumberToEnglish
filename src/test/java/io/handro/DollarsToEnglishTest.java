@@ -63,13 +63,6 @@ public class DollarsToEnglishTest {
     }
 
     @Test
-    public void DecimalTest(){
-        String expected = "Thousand";
-        String actual = DecimalRules.decimal(1,4);
-        assertEquals(expected,actual);
-    }
-
-    @Test
     public void HundredsTest(){
         String expected = "FourHundred";
         String actual = HundredsRules.hundreds(4);
@@ -101,34 +94,34 @@ public class DollarsToEnglishTest {
 
     @Test
     public void engineTest(){
-        String expected="TwoThousandThreeHundredFortyFiveDollars";
-        String actual = DollarsToEnglish.engine(number);
+        String expected="TwentyThousandDollars";
+        String actual = DollarsToEnglish.engine("20000");
         assertEquals(expected,actual);
     }
 
     @Test
-    public void engineTwoTest(){
+    public void largeNumTest(){
         String expected="NineHundredEighteenMillionThreeHundredFifteenThousandTwoHundredNineteenDollars";
         String actual = DollarsToEnglish.engine("918315219");
         assertEquals(expected,actual);
     }
 
     @Test
-    public void engineThreeTest(){
+    public void millionTest(){
         String expected="OneMillionDollars";
         String actual = DollarsToEnglish.engine("1000000");
         assertEquals(expected,actual);
     }
 
     @Test
-    public void engineFourTest(){
+    public void billionTest(){
         String expected="OneBillionDollars";
         String actual = DollarsToEnglish.engine("1000000000");
         assertEquals(expected,actual);
     }
 
     @Test
-    public void engineFiveTest(){
+    public void oneThousandTest(){
         String expected="OneThousandDollars";
         String actual = DollarsToEnglish.engine("1000");
         assertEquals(expected,actual);

@@ -1,5 +1,5 @@
 package io.handro.Rules;
-import io.handro.Ones;
+import io.handro.Rosetta.Ones;
 
 import java.util.ArrayList;
 

@@ -11,7 +11,7 @@ public class HundredsRules implements Rules {
 
     public static String hundreds(int digit){
         if(digit == 0) return "";
-        return ones(digit)+decimal(digit, 2);
+        return ones(digit)+"Hundred";
     }
 
     @Override
