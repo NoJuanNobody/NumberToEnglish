@@ -13,25 +13,32 @@ import static org.junit.Assert.assertTrue;
  * Created by alejandrolondono on 6/10/16.
  */
 public class HundredsRulesSpec {
-    HundredsRules HundredsRules;
+    HundredsRules hundredsRules;
     StringBuilder english;
     ArrayList<Integer> digits;
     @Before
     public void setUp() throws Exception {
-        HundredsRules = new HundredsRules();
+        hundredsRules = new HundredsRules();
         english = new StringBuilder();
         digits = new ArrayList<>(Arrays.asList(5));
     }
 
     @Test
     public void conditionTest() throws Exception {
-        assertTrue(HundredsRules.condition(5));
+        assertTrue(hundredsRules.condition(5));
     }
 
     @Test
     public void actionTest() throws Exception {
         String expected = "FiveHundred";
-        HundredsRules.action(english, digits, 0);
+        hundredsRules.action(english, digits, 0);
         assertEquals(expected,english.toString());
+    }
+
+    @Test
+    public void HundredsTest(){
+        String expected = "FourHundred";
+        String actual = hundredsRules.hundreds(4);
+        assertEquals(expected,actual);
     }
 }

@@ -49,27 +49,6 @@ public class DollarsToEnglishTest {
     }
 
     @Test
-    public void onesTest(){
-        String expected="Seven";
-        String actual = OnesRules.ones(7);
-        assertEquals(expected,actual);
-    }
-
-    @Test
-    public void tensTest(){
-        String expected="Fifty";
-        String actual = TensRules.tens(5);
-        assertEquals(expected,actual);
-    }
-
-    @Test
-    public void HundredsTest(){
-        String expected = "FourHundred";
-        String actual = HundredsRules.hundreds(4);
-        assertEquals(expected,actual);
-    }
-
-    @Test
     public void correctFormatTest(){
         ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(0,2,1));
         ArrayList<Integer> test = new ArrayList<>(Arrays.asList(2,1));
@@ -92,6 +71,10 @@ public class DollarsToEnglishTest {
         assertEquals(expected,actual);
     }
 
+    /*
+    * TRY WRITING A PARAMETERIZED TEST
+    * */
+
     @Test
     public void engineTest(){
         String expected="TwentyThousandDollars";
@@ -100,9 +83,9 @@ public class DollarsToEnglishTest {
     }
 
     @Test
-    public void largeNumTest(){
-        String expected="NineHundredEighteenMillionThreeHundredFifteenThousandTwoHundredNineteenDollars";
-        String actual = DollarsToEnglish.engine("918315219");
+    public void oneThousandTest(){
+        String expected="OneThousandDollars";
+        String actual = DollarsToEnglish.engine("1000");
         assertEquals(expected,actual);
     }
 
@@ -121,9 +104,9 @@ public class DollarsToEnglishTest {
     }
 
     @Test
-    public void oneThousandTest(){
-        String expected="OneThousandDollars";
-        String actual = DollarsToEnglish.engine("1000");
+    public void largeNumTest(){
+        String expected="NineHundredEighteenMillionThreeHundredFifteenThousandTwoHundredNineteenDollars";
+        String actual = DollarsToEnglish.engine("918315219");
         assertEquals(expected,actual);
     }
 }

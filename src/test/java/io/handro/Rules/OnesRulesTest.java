@@ -34,4 +34,11 @@ public class OnesRulesTest {
         assertEquals(expected,english.toString());
     }
 
+    @Test
+    public void onesTest(){
+        String expected="Seven";
+        String actual = onesRules.ones(7);
+        assertEquals(expected,actual);
+    }
+
 }
